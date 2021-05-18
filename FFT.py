@@ -52,7 +52,6 @@ def FFT(pixelarray, order, verbose=0):
         coef = 1 / tau * \
                quad_vec(lambda t: generateComplexNumber(t, t_coor, x_list, y_list) * np.exp(-n * t * 1j), 0, tau,
                         limit=100, full_output=1)[0]
-        print(coef)
         coeffs.append(coef)
         frequenties.append(n)
         stralen.append(abs(coef))
