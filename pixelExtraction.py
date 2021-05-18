@@ -1,5 +1,5 @@
-import PIL
 from PIL import Image, ImageDraw
+import PIL
 
 
 def firstPixel(im, verbose=0):
@@ -44,7 +44,7 @@ def pixels(im, radiusLimit, minimumPoints, verbose=0):
 
     if verbose > 0:
         print("picture size:", im.size)
-
+        im.show()
     # find base pixel
     base = firstPixel(im, verbose=verbose)
     # create array to place found pixels in
@@ -54,6 +54,7 @@ def pixels(im, radiusLimit, minimumPoints, verbose=0):
     amount = 0
     pixel = base
     start = True
+
     while pixel != base or start:
         start = False
         # the crawler hasn't finished the loop:

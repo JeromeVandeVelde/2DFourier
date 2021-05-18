@@ -1,9 +1,8 @@
-# image gui library:
-from tkinter import *
 from tkinter import filedialog
-import PIL.Image
-from PIL import Image
+from tkinter import *
 from PIL import ImageTk
+from PIL import Image
+import PIL.Image
 
 import BorderDetection
 import pixelExtraction
@@ -115,6 +114,7 @@ def executeCB(canvas, RadiusLimit, minimumPoints, requestedpoints, new_width, Ca
     # extract pixels list
     if verbose > 0:
         print("pixel extraction")
+
     pixelarray = pixelExtraction.pixels(im, RadiusLimit, minimumPoints, verbose=(verbose - 1))
 
     # rescale pixels array size
@@ -133,9 +133,9 @@ def executeCB(canvas, RadiusLimit, minimumPoints, requestedpoints, new_width, Ca
     # draw resulting picture
     if verbose > 0:
         print("drawing resulting picture")
-    im = pixelExtraction.draw(pixelarray, new_width, new_height, verbose=(verbose - 1))
-    im.save("FFT_2_input_pixels.png")
-    placeImage(canvas, im, CanvasWidth, CanvasHeight)
+    img = pixelExtraction.draw(pixelarray, new_width, new_height, verbose=(verbose - 1))
+    img.save("FFT_2_input_pixels.png")
+    placeImage(canvas, img, CanvasWidth, CanvasHeight)
 
     return pixelarray
 
@@ -156,14 +156,12 @@ def executeFT(video_path, order, seconds, player, verbose=0):
     # generate FFT
     if verbose > 0:
         print("generating fft")
-    """
-        FFT.FFT(pixelarray, new_width, new_height, verbose=(verbose-1))
-    """
 
     frames = seconds * 30
 
     # execute FFT on pixel array:
     fft = FFT.FFT(array, order, verbose-1)
+
     # generate mp4
     FFT.makeAnimation(fft, frames, order, video_path, verbose-1)
     player.play(video_path)

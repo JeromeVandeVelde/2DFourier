@@ -1,6 +1,6 @@
-import gui
-from tkinter import *
 from tkinter import ttk
+from tkinter import *
+import gui
 
 from tkvideoplayer import tkvideo
 
@@ -13,7 +13,7 @@ RadiusLimit = 0
 requestedpoints = 500
 new_width = 600
 kernel_list = ['laplace4', 'laplace2', 'X sobel', 'Y sobel']
-FourrierOrders = 20  # AANTAL CIRKELS: (order*2)+1
+order = 20  # AANTAL CIRKELS: order = divided by two rounded down
 Seconds = 5
 video_path = "epicycle.mp4"
 
@@ -158,15 +158,15 @@ c_cd.configure(bg='grey')
 l_ft1 = Label(content, text="Step 3: Fourier Transform", width=27, anchor="w", font=("Courier", 16, "bold"))
 l_ft1.grid(row=14, column=1, columnspan=3, sticky=W, pady=2)
 
-text = "For the last step, start by defining the amount of circles you want in the approximation of your edge. The higher the amount of circles, the closer the fourier series will be to the original contour. You can also specify the playback speed of the loop in seconds."
+text = "For the last step, start by defining the amount of circles you want in the approximation of your edge. This is dependent on the order (= 2x circles). The higher the amount of circles, the closer the fourier series will be to the original contour. You can also specify the playback speed of the loop in seconds."
 l_text1 = Label(content, text=text, wraplength=300, justify=LEFT)
 l_text1.grid(row=15, column=4, columnspan=2, sticky=W, pady=2)
 
-l_ft2 = Label(content, text="Amount of circles:")
+l_ft2 = Label(content, text="Fourier order:")
 l_ft2.grid(row=15, column=1, columnspan=4, sticky=W, pady=2)
 t_ft2 = Text(content, height=1, width=10, font=("Courier", 10, "bold"))
 t_ft2.grid(row=15, column=3, columnspan=1, rowspan=1, sticky=W, pady=2)
-t_ft2.insert(INSERT, FourrierOrders)
+t_ft2.insert(INSERT, order)
 
 l_ft3 = Label(content, text="Duration of the loop (s):")
 l_ft3.grid(row=16, column=1, columnspan=4, sticky=W, pady=2)
